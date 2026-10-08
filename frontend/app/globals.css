@@ -1,0 +1,466 @@
+@import "tailwindcss";
+
+/* =========================================================
+   HARF 7
+   TV YARIŞMA PROGRAMI — NİHAİ GÖRSEL SİSTEM
+   ========================================================= */
+
+:root {
+  --background: #07051a;
+  --foreground: #f7f4ff;
+
+  --neon-purple: #a855f7;
+  --neon-lilac: #c084fc;
+  --neon-blue: #38bdf8;
+  --neon-pink: #e879f9;
+
+  --stage-purple: rgba(168, 85, 247, 0.18);
+  --stage-blue: rgba(56, 189, 248, 0.16);
+  --stage-pink: rgba(232, 121, 249, 0.14);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+
+/* =========================================================
+   SIFIRLA
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #07051a;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  position: relative;
+  isolation: isolate;
+
+  color: var(--foreground);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      ellipse 55% 45% at 8% 5%,
+      var(--stage-purple),
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 50% 42% at 92% 5%,
+      var(--stage-blue),
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 50% 38%,
+      rgba(168, 85, 247, 0.075),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 65% 42% at 50% 100%,
+      var(--stage-pink),
+      transparent 70%
+    ),
+    #07051a;
+}
+
+
+/* =========================================================
+   ORTAM STÜDYO IŞIĞI
+   ========================================================= */
+
+body::before {
+  content: "";
+
+  position: fixed;
+  inset: -30%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 15% 28%,
+      rgba(168, 85, 247, 0.13),
+      transparent 21%
+    ),
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(56, 189, 248, 0.11),
+      transparent 21%
+    ),
+    radial-gradient(
+      circle at 50% 82%,
+      rgba(232, 121, 249, 0.08),
+      transparent 24%
+    );
+
+  filter: blur(50px);
+
+  animation:
+    ambientGlow 10s ease-in-out infinite alternate;
+
+  z-index: -3;
+}
+
+
+/* =========================================================
+   YAYIN TARAMA ÇİZGİLERİ + IZGARA
+   ========================================================= */
+
+body::after {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.018) 0px,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(56, 189, 248, 0.026) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      rgba(168, 85, 247, 0.026) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    auto,
+    50px 50px,
+    50px 50px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black 0%,
+      black 72%,
+      transparent 100%
+    );
+
+  opacity: 0.9;
+
+  z-index: -2;
+}
+
+
+/* =========================================================
+   ANA SAHNE
+   ========================================================= */
+
+main {
+  position: relative;
+  isolation: isolate;
+}
+
+
+/* Merkez spot ışığı */
+
+main::before {
+  content: "";
+
+  position: absolute;
+
+  top: -210px;
+  left: 50%;
+
+  width: min(1200px, 110vw);
+  height: 700px;
+
+  transform: translateX(-50%);
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(192, 132, 252, 0.18) 0%,
+      rgba(168, 85, 247, 0.10) 30%,
+      transparent 70%
+    );
+
+  filter: blur(42px);
+
+  animation:
+    stageSpotlight 8s ease-in-out infinite alternate;
+
+  z-index: 0;
+}
+
+
+/* Sahne zemini */
+
+main::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 45%;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(168, 85, 247, 0.10),
+      transparent 82%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 79px,
+      rgba(56, 189, 248, 0.025) 80px,
+      transparent 81px
+    );
+
+  mask-image:
+    linear-gradient(
+      to top,
+      black,
+      transparent
+    );
+
+  opacity: 0.8;
+
+  z-index: 0;
+}
+
+
+/* =========================================================
+   SAHNE IŞIK HUZMELERİ
+   ========================================================= */
+
+main {
+  background:
+    linear-gradient(
+      112deg,
+      transparent 0%,
+      rgba(168, 85, 247, 0.025) 28%,
+      transparent 48%
+    ),
+    linear-gradient(
+      248deg,
+      transparent 0%,
+      rgba(56, 189, 248, 0.025) 28%,
+      transparent 48%
+    );
+}
+
+
+/* =========================================================
+   NEON YARDIMCILARI
+   ========================================================= */
+
+.neon-purple {
+  box-shadow:
+    0 0 10px rgba(168, 85, 247, 0.45),
+    0 0 30px rgba(168, 85, 247, 0.22),
+    0 0 60px rgba(168, 85, 247, 0.08);
+}
+
+.neon-blue {
+  box-shadow:
+    0 0 10px rgba(56, 189, 248, 0.45),
+    0 0 30px rgba(56, 189, 248, 0.22),
+    0 0 60px rgba(56, 189, 248, 0.08);
+}
+
+.neon-pink {
+  box-shadow:
+    0 0 10px rgba(232, 121, 249, 0.45),
+    0 0 30px rgba(232, 121, 249, 0.22),
+    0 0 60px rgba(232, 121, 249, 0.08);
+}
+
+
+/* =========================================================
+   BUTONLAR
+   ========================================================= */
+
+button {
+  transition:
+    transform 180ms ease,
+    filter 180ms ease,
+    box-shadow 180ms ease;
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:focus-visible {
+  outline: 2px solid rgba(192, 132, 252, 0.8);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   GİRİŞ
+   ========================================================= */
+
+input {
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    background-color 200ms ease;
+}
+
+input:focus {
+  outline: none;
+}
+
+
+/* =========================================================
+   SEÇİM
+   ========================================================= */
+
+::selection {
+  background: rgba(168, 85, 247, 0.45);
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   KAYDIRMA ÇUBUĞU
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07051a;
+}
+
+::-webkit-scrollbar-thumb {
+  background:
+    linear-gradient(
+      #a855f7,
+      #38bdf8
+    );
+
+  border-radius: 999px;
+
+  box-shadow:
+    0 0 10px rgba(168, 85, 247, 0.35);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(
+      #c084fc,
+      #38bdf8
+    );
+}
+
+
+/* =========================================================
+   ANİMASYONLAR
+   ========================================================= */
+
+@keyframes ambientGlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.62;
+  }
+
+  50% {
+    opacity: 0.82;
+  }
+
+  100% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+@keyframes stageSpotlight {
+  0% {
+    transform: translateX(-50%) scale(0.95);
+    opacity: 0.60;
+  }
+
+  50% {
+    opacity: 0.88;
+  }
+
+  100% {
+    transform: translateX(-50%) scale(1.06);
+    opacity: 0.74;
+  }
+}
+
+
+/* =========================================================
+   MOBİL
+   ========================================================= */
+
+@media (max-width: 640px) {
+  body::before {
+    filter: blur(34px);
+  }
+
+  main::before {
+    width: 900px;
+    height: 500px;
+    top: -150px;
+  }
+
+  body::after {
+    background-size:
+      auto,
+      35px 35px,
+      35px 35px;
+  }
+}
+
+
+/* =========================================================
+   AZALTILMIŞ HAREKET
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

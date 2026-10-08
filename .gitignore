@@ -1,0 +1,29 @@
+﻿# Python
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+*.py[cod]
+
+# Local database
+backend/*.db
+
+# Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Git backup
+frontend/.git_backup/
